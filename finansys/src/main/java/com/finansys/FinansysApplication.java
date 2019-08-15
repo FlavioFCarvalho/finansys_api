@@ -1,4 +1,4 @@
-package com.finansys.finansys;
+package com.finansys;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
