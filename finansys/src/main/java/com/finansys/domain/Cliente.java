@@ -1,7 +1,6 @@
 package com.finansys.domain;
 
 import java.io.Serializable;
-import java.nio.MappedByteBuffer;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.finansys.domain.enuns.TipoCliente;
 
 @Entity
@@ -31,6 +31,7 @@ public class Cliente implements Serializable{
     
     private Integer tipo;
     
+    @JsonManagedReference
     @OneToMany(mappedBy="cliente")
     private List<Endereco> enderecos = new ArrayList<>();
     
@@ -42,13 +43,14 @@ public class Cliente implements Serializable{
     	
     }
 
-	public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipoCliente) {
+    public Cliente(Integer id, String nome, String email, String cpfOuCnpj, TipoCliente tipo) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = tipoCliente.getCod();
+		this.tipo = (tipo==null) ? null : tipo.getCod();
+		
 	}
 
 	public Integer getId() {
@@ -83,14 +85,14 @@ public class Cliente implements Serializable{
 		this.cpfOuCnpj = cpfOuCnpj;
 	}
 
-	public TipoCliente getTipoCliente() {
+	public TipoCliente getTipo() {
 		return TipoCliente.toEnum(tipo);
 	}
 
-	public void setTipoCliente(TipoCliente tipoCliente) {
-		this.tipo= tipoCliente.getCod();
+	public void setTipo(TipoCliente tipo) {
+		this.tipo = tipo.getCod();
 	}
-
+	
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
