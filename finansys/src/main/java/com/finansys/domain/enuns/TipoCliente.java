@@ -2,35 +2,38 @@ package com.finansys.domain.enuns;
 
 public enum TipoCliente {
 
-	PESSOAFISICA(1, "Pessoa Física"), PESSOAJURIDICA(2, "Pessoa Jurídica");
-
-	private Integer cod;
+	PESSOAFISICA(1, "Pessoa Física"),
+	PESSOAJURIDICA(2, "Pessoa Jurídica");
+	
+	private int cod;
 	private String descricao;
-
-	private TipoCliente(Integer cod, String descricao) {
+	
+	private TipoCliente(int cod, String descricao) {
 		this.cod = cod;
 		this.descricao = descricao;
 	}
-
-	public Integer getCod() {
+	
+	public int getCod() {
 		return cod;
 	}
-
-	public String getDescricao() {
+	
+	public String getDescricao () {
 		return descricao;
 	}
-
-	public static TipoCliente toEnum  (Integer cod) {
+	
+	public static TipoCliente toEnum(Integer cod) {
+		
 		if (cod == null) {
 			return null;
 		}
+		
 		for (TipoCliente x : TipoCliente.values()) {
-			if (x.getCod().equals(x)) {
+			if (cod.equals(x.getCod())) {
 				return x;
 			}
 		}
-		throw new IllegalArgumentException("Id inválido" + cod);
-
+		
+		throw new IllegalArgumentException("Id inválido: " + cod);
 	}
-
+	
 }
