@@ -13,6 +13,7 @@ import com.finansys.domain.Cidade;
 import com.finansys.domain.Cliente;
 import com.finansys.domain.Endereco;
 import com.finansys.domain.Estado;
+import com.finansys.domain.ItemPedido;
 import com.finansys.domain.Pagamento;
 import com.finansys.domain.PagamentoComBoleto;
 import com.finansys.domain.PagamentoComCartao;
@@ -25,6 +26,7 @@ import com.finansys.repositories.CidadeRepository;
 import com.finansys.repositories.ClienteRepository;
 import com.finansys.repositories.EnderecoRepository;
 import com.finansys.repositories.EstadoRepository;
+import com.finansys.repositories.ItemPedidoRepository;
 import com.finansys.repositories.PagamentoRepository;
 import com.finansys.repositories.PedidoRepository;
 import com.finansys.repositories.ProdutoRepository;
@@ -55,6 +57,9 @@ public class FinansysApplication implements CommandLineRunner{
 	
 	@Autowired
 	private PedidoRepository pedidoRepository;
+	
+	@Autowired
+	private ItemPedidoRepository itemPedidoRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(FinansysApplication.class, args);
@@ -105,6 +110,17 @@ public class FinansysApplication implements CommandLineRunner{
 		
 		cli1.getPedidos().addAll(Arrays.asList(ped1,ped2));
 		
+		ItemPedido ip1 = new ItemPedido(p1, ped1, 0.00, 1, 2000.00);
+		ItemPedido ip2 = new ItemPedido(p3, ped1 , 0.00, 2, 80.00);
+		ItemPedido ip3 = new ItemPedido(p2, ped2 , 100.00, 1, 800.00);
+		
+		ped1.getItens().addAll(Arrays.asList(ip1,ip2));
+	    ped2.getItens().addAll(Arrays.asList(ip3));
+	    
+	    p1.getItens().addAll(Arrays.asList(ip1));
+	    p2.getItens().addAll(Arrays.asList(ip3));
+	    p3.getItens().addAll(Arrays.asList(ip2));
+		
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(cid1,cid2,cid3));
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
@@ -114,6 +130,8 @@ public class FinansysApplication implements CommandLineRunner{
 		
 		pedidoRepository.saveAll(Arrays.asList(ped1,ped2));
 		pagamentoRepository.saveAll(Arrays.asList(pag1,pag2));
+		
+		itemPedidoRepository.saveAll(Arrays.asList(ip1,ip2,ip3));
 	}
 
 }
