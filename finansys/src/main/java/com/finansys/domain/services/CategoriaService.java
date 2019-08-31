@@ -17,7 +17,7 @@ public class CategoriaService {
 	@Autowired
 	private CategoriaRepository repo;
 	
-	public Categoria buscar(Integer id) {
+	public Categoria find (Integer id) {
 		Optional<Categoria> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFountException(
 		"Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
@@ -29,12 +29,14 @@ public class CategoriaService {
 	}
 
 	public void delete(Integer id) {
-		buscar(id);
+		find(id);
 		try {
 			repo.deleteById(id);	
 		}catch(DataIntegrityViolationException e) {
 			throw new DataIntegrytiException("Não é possivél excluir uma categoria que possui produtos");
 		}
 	}
+
+	
 
 }
