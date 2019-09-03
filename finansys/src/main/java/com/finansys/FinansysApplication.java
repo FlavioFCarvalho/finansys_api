@@ -70,6 +70,12 @@ public class FinansysApplication implements CommandLineRunner{
 		
 		Categoria cat1 = new Categoria(null,"Informática",null);
 		Categoria cat2 = new Categoria(null,"Escritório",null);
+		Categoria cat3 = new Categoria(null,"Casa",null);
+		Categoria cat4 = new Categoria(null,"Lazer",null);
+		Categoria cat5 = new Categoria(null,"Cama, mesa e banho",null);
+		Categoria cat6 = new Categoria(null,"Animais",null);
+		Categoria cat7 = new Categoria(null,"Eletrônicos",null);
+		Categoria cat8 = new Categoria(null,"Diversos",null);
 		
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Impressora", 100.00);
@@ -123,7 +129,7 @@ public class FinansysApplication implements CommandLineRunner{
 		
 		estadoRepository.saveAll(Arrays.asList(est1,est2));
 		cidadeRepository.saveAll(Arrays.asList(cid1,cid2,cid3));
-		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
+		categoriaRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5,cat6,cat7,cat8));
 		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
 		clienteRepository.saveAll(Arrays.asList(cli1));
 		enderecoRepository.saveAll(Arrays.asList(e1,e2));
