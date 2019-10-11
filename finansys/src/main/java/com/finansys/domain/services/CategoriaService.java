@@ -53,7 +53,7 @@ public class CategoriaService {
 	}
 
 	public Categoria fromDTO(CategoriaDTO objDTO) {
-		return new Categoria(objDTO.getId(), objDTO.getName(), null);
+		return new Categoria(objDTO.getId(), objDTO.getNome(), null);
 	}
 
 	public Categoria update(Categoria obj) {
@@ -63,7 +63,7 @@ public class CategoriaService {
 	}
 
 	private void updateData(Categoria objNew, Categoria obj) {
-		objNew.setName(obj.getName());
+		objNew.setNome(obj.getNome());
 	}
 
 }
